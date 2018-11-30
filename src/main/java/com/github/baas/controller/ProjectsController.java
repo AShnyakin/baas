@@ -1,12 +1,10 @@
-package main.java.controller;
+package com.github.baas.controller;
 
-
-import main.java.models.Projects;
-import main.java.repositories.ProjectsRepository;
+import com.github.baas.models.Project;
+import com.github.baas.repositories.ProjectRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 
 import javax.validation.Valid;
 import java.util.List;
@@ -16,29 +14,29 @@ import java.util.List;
 public class ProjectsController {
 
     @Autowired
-    private ProjectsRepository repository;
+    private ProjectRepository repository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public List<Projects> getAllProjects() {
+    public List<Project> getAllProjects() {
         return repository.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Projects getProjectById(@PathVariable("id") ObjectId id) {
+    public Project getProjectById(@PathVariable("id") ObjectId id) {
         return repository.findBy_id(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void ModifyProjectById(@PathVariable("id") ObjectId id, @Valid @RequestBody Projects projects) {
-        projects.set_id(id);
-        repository.save(projects);
+    public void ModifyProjectById(@PathVariable("id") ObjectId id, @Valid @RequestBody Project project) {
+        project.set_id(id);
+        repository.save(project);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Projects createProject(@Valid @RequestBody Projects projects) {
-        projects.set_id(ObjectId.get());
-        repository.save(projects);
-        return projects;
+    public Project createProject(@Valid @RequestBody Project project) {
+        project.set_id(ObjectId.get());
+        repository.save(project);
+        return project;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

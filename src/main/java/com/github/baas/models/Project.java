@@ -1,9 +1,9 @@
-package main.java.models;
+package com.github.baas.models;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
-public class Projects {
+public class Project {
 
     @Id
     private ObjectId _id;
@@ -12,9 +12,9 @@ public class Projects {
     private String testSuite;
     private String testCase;
 
-    public Projects() {}
+    public Project() {}
 
-    public Projects(ObjectId _id, String name, String testSuite, String testCase) {
+    public Project(ObjectId _id, String name, String testSuite, String testCase) {
         this._id = _id;
         this.name = name;
         this.testSuite = testSuite;

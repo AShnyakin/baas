@@ -1,4 +1,4 @@
-package main.java.configurations;
+package com.github.baas.configurations;
 
 import com.github.mongobee.Mongobee;
 import org.springframework.beans.factory.annotation.Value;

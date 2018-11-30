@@ -1,11 +1,9 @@
-package main.java.repositories.migrations;
+package com.github.baas.repositories.migrations;
 
 import com.github.mongobee.changeset.ChangeLog;
 import com.github.mongobee.changeset.ChangeSet;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
-import com.mongodb.DBObject;
-import com.mongodb.client.model.CreateCollectionOptions;
 
 @ChangeLog
 public class MongoMigrations {
