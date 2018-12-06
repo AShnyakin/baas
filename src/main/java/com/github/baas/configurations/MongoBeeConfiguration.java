@@ -20,7 +20,7 @@ public class MongoBeeConfiguration {
         Mongobee runner = new Mongobee(String.format("mongodb://%s:%s/", mongoDbURl, mongoDbPort));
         runner.setDbName(mongoDbName);
         runner.setChangeLogsScanPackage(
-                "main.java.repositories.migrations");
+                "com.github.baas.repositories.migrations");
         return runner;
     }
 
