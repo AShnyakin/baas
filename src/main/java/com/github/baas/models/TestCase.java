@@ -1,12 +1,22 @@
 package com.github.baas.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.Map;
 
+@Document(value = "testCases")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TestCase {
+
+	@Id
+	private ObjectId _id;
+
+	private String projectName;
+	private String testSuiteName;
 
     private String uid;
     private String name;
@@ -15,12 +25,16 @@ public class TestCase {
     private Map<String, Long> time;
     private String status;
     private String description;
-    private List<Map<String, String>> labels;
-    private List<Map<String, String>> links;
+    private List<Object> labels;
+    private List<Object> links;
 
     public  TestCase(){}
 
-    public TestCase(String uid, String name, String fullName, String historyId, String status, String description) {
+    public TestCase(ObjectId _id, String projectName, String testSuiteName,
+					String uid, String name, String fullName, String historyId, String status, String description) {
+		this._id = _id;
+		this.projectName = projectName;
+		this.testSuiteName = testSuiteName;
         this.uid = uid;
         this.name = name;
         this.fullName = fullName;
@@ -29,7 +43,26 @@ public class TestCase {
         this.description = description;
     }
 
-    public void setUid(String uid) {
+	public  String get_id() { return _id.toHexString(); }
+	public void set_id(ObjectId _id) { this._id = _id; }
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public String getTestSuiteName() {
+		return testSuiteName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public void setTestSuiteName(String testSuiteName) {
+		this.testSuiteName = testSuiteName;
+	}
+
+	public void setUid(String uid) {
         this.uid = uid;
     }
 
@@ -85,19 +118,19 @@ public class TestCase {
         return description;
     }
 
-    public List<Map<String, String>> getLabels() {
+    public List<Object> getLabels() {
         return labels;
     }
 
-    public void setLabels(List<Map<String, String>> labels) {
+    public void setLabels(List<Object> labels) {
         this.labels = labels;
     }
 
-    public List<Map<String, String>> getLinks() {
+    public List<Object> getLinks() {
         return links;
     }
 
-    public void setLinks(List<Map<String, String>> links) {
+    public void setLinks(List<Object> links) {
         this.links = links;
     }
 }

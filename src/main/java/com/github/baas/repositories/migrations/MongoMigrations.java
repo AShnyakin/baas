@@ -10,7 +10,7 @@ public class MongoMigrations {
 
     @ChangeSet(order = "001", id = "createTestCollection", author = "Alexey")
     public void createTestCollection(DB db){
-        db.createCollection("projects", new BasicDBObject());
+        db.createCollection("testCases", new BasicDBObject());
     }
 
 }
