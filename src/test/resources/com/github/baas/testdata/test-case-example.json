@@ -1,0 +1,74 @@
+{
+  "uid" : "5af9c7392acc6478",
+  "name" : "simpleTestWithSteps",
+  "fullName" : "my.company.tests.SimpleTest.simpleTestWithSteps",
+  "historyId" : "e3ae3b80166dd241fb8eeb06b325ffc3",
+  "time" : {
+    "start" : 1543998345826,
+    "stop" : 1543998345873,
+    "duration" : 47
+  },
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : true
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "checkThat2is2",
+      "time" : {
+        "start" : 1543998345869,
+        "stop" : 1543998345873,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "hasContent" : false,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ]
+    } ],
+    "attachments" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 1,
+    "attachmentsCount" : 0
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "my.company.tests"
+  }, {
+    "name" : "testClass",
+    "value" : "my.company.tests.SimpleTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "simpleTestWithSteps"
+  }, {
+    "name" : "suite",
+    "value" : "my.company.tests.SimpleTest"
+  }, {
+    "name" : "host",
+    "value" : "LVR51833"
+  }, {
+    "name" : "thread",
+    "value" : "1880@LVR51833.main(1)"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "a796f48bc7af6523",
+      "status" : "passed",
+      "time" : {
+        "start" : 1543837214188,
+        "stop" : 1543837214272,
+        "duration" : 84
+      }
+    } ],
+    "categories" : [ ]
+  }
+}
