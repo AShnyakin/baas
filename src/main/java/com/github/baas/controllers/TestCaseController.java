@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -26,22 +27,17 @@ public class TestCaseController {
         return testCaseService.findAll();
     }
 
+	@ApiIgnore
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public TestCase getTestCaseById(@PathVariable("id") ObjectId id) {
         return testCaseService.findBy_id(id);
     }
 
+	@ApiIgnore
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public void ModifyTestCaseById(@PathVariable("id") ObjectId id, @Valid @RequestBody TestCase testCase) {
 		testCase.set_id(id);
 		testCaseService.save(testCase);
-    }
-
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public TestCase createProject(@Valid @RequestBody TestCase testCase) {
-		testCase.set_id(ObjectId.get());
-		testCaseService.save(testCase);
-        return testCase;
     }
 
     @GetMapping("/{projectName}/{testSuite}")
@@ -61,6 +57,7 @@ public class TestCaseController {
         return testCaseService.save(testCase);
     }
 
+	@ApiIgnore
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteTestCase(@PathVariable ObjectId id) {
 		testCaseService.delete(id);
