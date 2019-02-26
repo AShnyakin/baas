@@ -15,12 +15,14 @@ public class JsonDataLoader {
 
 	public <T> Optional<T> loadEntity(String fileName, Class<T> valueType) {
 		String name = getJsonFileNameByFileName(fileName);
+		T result;
 		try {
 			String data = IOUtils.toString(getClass().getResourceAsStream(name), StandardCharsets.UTF_8);
-			return Optional.of(Mapper.objectMapper.readValue(data, valueType));
+			result = Mapper.objectMapper.readValue(data, valueType);
 		} catch (IOException e) {
-			return Optional.empty();
+			throw new RuntimeException("Can't read the file with filename" + name,e);
 		}
+		return Optional.ofNullable(result);
 	}
 
 }
