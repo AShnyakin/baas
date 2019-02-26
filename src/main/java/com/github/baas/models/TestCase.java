@@ -34,9 +34,8 @@ public class TestCase {
 
     public  TestCase(){}
 
-    public TestCase(ObjectId _id, String projectName, String testSuiteName,
+    public TestCase(String projectName, String testSuiteName,
 					String uid, String name, String fullName, String historyId, String status, String description) {
-		this._id = _id;
 		this.projectName = projectName;
 		this.testSuiteName = testSuiteName;
         this.uid = uid;
