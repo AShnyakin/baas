@@ -11,9 +11,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.io.IOException;
+import java.util.Optional;
 
 import static org.hamcrest.core.Is.is;
 
@@ -28,8 +29,9 @@ public class MongoDbSpringIntegrationTest {
 	private JsonDataLoader jsonDataLoader = new JsonDataLoader();
 
 	@BeforeEach
-	public void initPage() throws IOException {
-		testCase = jsonDataLoader.loadEntity("/com/github/baas/testdata/test-case-example", TestCase.class);
+	public void initPage() {
+		Optional<TestCase> testCaseOptional = jsonDataLoader.loadEntity("/com/github/baas/testdata/test-case-example", TestCase.class);
+		testCase = testCaseOptional.get();
 		testCase.setProjectName("Test-Project");
 		testCase.setTestSuiteName("Test-Suite");
 	}
@@ -38,8 +40,9 @@ public class MongoDbSpringIntegrationTest {
 	@Test
 	public void checkSavedTestCase(@Autowired MongoTemplate mongoTemplate) {
 		testCaseService.save(testCase);
+		BasicQuery query = new BasicQuery("{ projectName : 'Test-Project' }");
 
 		Assert.assertThat("Test case was saved",
-				mongoTemplate.findAll(TestCase.class, "testCases").get(0).getProjectName(), is("Test-Project"));
+				mongoTemplate.findOne(query, TestCase.class).getProjectName(), is("Test-Project"));
 	}
 }
